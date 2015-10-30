@@ -5,12 +5,13 @@
 (setq auto-save-list-file-name nil)
 (setq auto-save-default nil)
 
+(setq column-number-mode t)
+
 (menu-bar-mode 0)
 
 (load-theme 'zenburn t)
-; (load-theme 'tango-dark t)
 
-;; Enable mouse support
+;; enable mouse support
 (unless window-system
   (require 'mouse)
   (xterm-mouse-mode t)
@@ -26,3 +27,19 @@
 (require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+;; gofmt
+(defun go-mode-setup ()
+  (go-eldoc-setup)
+  (add-hook 'before-save-hook 'gofmt-before-save))
+(add-hook 'go-mode-hook 'go-mode-setup)
+
+;; goimports
+;; go get -u golang.org/x/tools/cmd/goimports
+(defun go-mode-setup ()
+  (go-eldoc-setup)
+  (setq gofmt-command "goimports")
+  (add-hook 'before-save-hook 'gofmt-before-save))
+(add-hook 'go-mode-hook 'go-mode-setup)
+
+;; go get -u github.com/rogpeppe/godef
