@@ -43,3 +43,7 @@
 (add-hook 'go-mode-hook 'go-mode-setup)
 
 ;; go get -u github.com/rogpeppe/godef
+
+(global-set-key "\C-cc" 'compile)
+
+;; go get -u github.com/nsf/gocode
